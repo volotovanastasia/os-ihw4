@@ -3,6 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <time.h>
 
 typedef struct {
     int socket;
@@ -82,7 +83,7 @@ int main(int argc, char *argv[]) {
             if (i == new_num_clients - 1 && num_clients % 2 == 1) {
                 next_round[i] = current_round[i * 2];
                 clients[current_round[i * 2]].energy *= 2;
-            } else { // handling pairs
+            } else {
                 int random = rand() % 2;
                 next_round[i] = current_round[i * 2 + random];
                 clients[current_round[i * 2 + random]].energy = clients[current_round[i * 2 + (random + 1) % 2]].energy;
